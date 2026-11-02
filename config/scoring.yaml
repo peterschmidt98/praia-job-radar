@@ -1,0 +1,40 @@
+# Ranking and placement (ARCHITECTURE.md §4.6–4.7).
+
+fit_min: 6                 # below this: not published
+
+weights:
+  fit_multiplier: 10       # score = fit_score × this
+  fresh_le_3_days: 10
+  fresh_le_7_days: 5
+  stale_gt_14_days: -5
+  verified_at_source: 8
+  multi_source: 3
+  hiring_velocity: 5       # company has ≥ hiring_velocity_min relevant postings in 30 days
+  hiring_velocity_min: 3
+  company_boost: 5         # she has applied at this company before
+  peter_recommended: 25
+  ghost_score_multiplier: -5
+  dutch_preferred: -5
+
+placement:
+  deck_size: 8             # max new leads per run in her review deck
+  max_per_company_in_deck: 2
+  deck_seniority: [junior, mid]
+  dutch_required_to: queue # dutch == "required" never enters the deck
+  queue_expiry_days: 14
+  queue_recheck_after_days: 7
+
+ghost:
+  ats_title_missing: 2     # company has a working ATS board but this title isn't on it
+  old_or_reposted: 1       # > 30 days old, or same company+title reposted 2+ times in 30 days
+  judge_signals: 1
+  agency_unnamed_client: 1
+  company_fake_reports: 2  # company has ≥ fake_reports_min "looks fake" reviews
+  fake_reports_min: 2
+  hide_at_or_above: 4      # hidden unless verified_at_source
+
+dedupe:
+  title_similarity_min: 90 # rapidfuzz token_set_ratio
+
+# Review-time estimate shown on Início ("uns N minutos")
+minutes_per_lead: 1

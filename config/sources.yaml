@@ -1,0 +1,57 @@
+# Source switches and limits (ARCHITECTURE.md §4.1, §8, §9).
+
+budget_eur_per_month: 6     # paid collectors switch off at 100%; warning on Saúde at 80%
+schedule_note: "cron 37 6 * * 1,3,5 (UTC) — Mon/Wed/Fri ~07:37/08:37 Amsterdam"
+
+ats:
+  enabled: true
+  companies_file: config/companies.yaml
+  delay_seconds: 0.5
+
+indeed:
+  enabled: true
+  library: python-jobspy
+  country_indeed: netherlands
+  hours_old: 72
+  results_wanted_per_query: 50
+  # Indeed searches descriptions too; quoted phrases cut noise.
+  queries:
+    - '"sales operations" OR "revenue operations" OR revops'
+    - '"crm analyst" OR "crm specialist" OR "salesforce administrator" OR "salesforce admin"'
+    - '"commercial analyst" OR "pricing analyst" OR "deal desk" OR "business operations analyst"'
+
+adzuna:
+  enabled: true
+  country: nl
+  max_days_old: 3
+  results_per_page: 50
+  title_only: true          # verify the parameter name against Adzuna's API docs
+  queries:
+    - sales operations
+    - revenue operations
+    - crm analyst
+    - salesforce
+    - commercial analyst
+    - pricing analyst
+
+linkedin:
+  enabled: false            # switch on only after calibration (docs/SETUP.md step 7)
+  provider: apify
+  searches_file: config/linkedin_searches.yaml
+
+manual:
+  enabled: true             # Peter's "+ Add link" in the app → manual_links table
+
+judge:
+  model: claude-haiku-5-5
+  effort: low               # check current API docs for the parameter
+  max_calls_per_run: 150
+  calibration_examples: 15
+  candidate_weight: 2       # her reviews count double vs Peter's
+  description_max_chars: 6000
+
+verify:
+  timeout_seconds: 15
+  tier2_max: 20             # Playwright renders per run
+  min_visible_chars: 400    # below this, tier 1 result is "unknown"
+  closed_phrases_file: config/closed_phrases.yaml

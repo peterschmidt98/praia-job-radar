@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Pronto por hoje</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=Nunito+Sans:wght@400;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1F7A86}a:hover{color:#165C66}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: #FFF8F4; color: #3A2430; font-family: 'Nunito Sans', system-ui, sans-serif; display: flex; flex-direction: column; padding: 40px 22px 26px; gap: 20px;">
+
+  <svg aria-hidden="true" width="346" height="150" viewBox="0 0 346 150" style="display: block;">
+    <circle cx="173" cy="92" r="46" fill="#F7C9C0"></circle>
+    <rect x="0" y="92" width="346" height="58" fill="#FFF8F4"></rect>
+    <path d="M0 96 Q 22 88 44 96 T 88 96 T 132 96 T 176 96 T 220 96 T 264 96 T 308 96 T 352 96" fill="none" stroke="#1F7A86" stroke-width="2.5" stroke-linecap="round"></path>
+    <path d="M20 114 Q 40 107 60 114 T 100 114 T 140 114 T 180 114 T 220 114 T 260 114 T 300 114 T 340 114" fill="none" stroke="#1F7A86" stroke-opacity="0.55" stroke-width="2.5" stroke-linecap="round"></path>
+    <path d="M44 132 Q 62 126 80 132 T 116 132 T 152 132 T 188 132 T 224 132 T 260 132 T 296 132" fill="none" stroke="#1F7A86" stroke-opacity="0.3" stroke-width="2.5" stroke-linecap="round"></path>
+  </svg>
+
+  <header style="display: flex; flex-direction: column; gap: 6px; text-align: center;">
+    <p style="margin: 0; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #6B5560;">6 de 6 revisados</p>
+    <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 46px; line-height: 1;">Pronto por hoje.</h1>
+    <p style="margin: 4px 0 0; font-size: 15px; line-height: 1.45; color: #6B5560;">Decidir também é avançar.</p>
+  </header>
+
+  <section style="background: #FFFFFF; border: 1px solid #F1DFD8; border-radius: 18px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: center; min-height: 52px; padding: 0 16px; border-bottom: 1px solid #F1DFD8;">
+      <span style="font-size: 15px; font-weight: 700;">Foram pra sua lista</span>
+      <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; color: #1F7A86;">2</span>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; min-height: 52px; padding: 0 16px; border-bottom: 1px solid #F1DFD8;">
+      <span style="font-size: 15px; font-weight: 700;">Não eram pra você</span>
+      <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; color: #6B5560;">3</span>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; min-height: 52px; padding: 0 16px;">
+      <span style="font-size: 15px; font-weight: 700;">Guardada pra depois</span>
+      <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; color: #6B5560;">1</span>
+    </div>
+  </section>
+
+  <section style="padding: 14px 16px; background: #FFFFFF; border-radius: 16px; border: 1px solid #F1DFD8; display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+      <span style="font-size: 14px; font-weight: 800;">Maré da semana</span>
+      <span style="font-size: 13px; color: #6B5560;">3 de 5</span>
+    </div>
+    <div style="height: 8px; background: #F3E6E1; border-radius: 99px; overflow: hidden; display: flex;">
+      <div style="width: 60%; height: 8px; background: {{accent}};"></div>
+      <div style="width: 40%; height: 8px; background: #9FD0D6;"></div>
+    </div>
+    <p style="margin: 0; font-size: 13px; line-height: 1.4; color: #6B5560;">As 2 que faltam já estão na sua lista.</p>
+  </section>
+
+  <div style="margin-top: auto; display: flex; flex-direction: column; gap: 4px;">
+    <a href="1-inicio.dc.html" style="height: 56px; border-radius: 16px; background: {{accent}}; color: #FFFFFF; font-size: 16px; font-weight: 800; text-decoration: none; display: flex; align-items: center; justify-content: center;">Ver minha lista</a>
+    <a href="4-fila.dc.html" style="min-height: 44px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; text-decoration: none;">Revisar a fila (9)</a>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#1F7A86","options":["#1F7A86","#C23E66","#3A2430"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#1F7A86' };
+  }
+}
+</script>
+</body>
+</html>

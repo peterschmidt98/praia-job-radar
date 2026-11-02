@@ -1,0 +1,45 @@
+# Candidate settings. Items marked PROVISIONAL wait for Gabi's sign-off.
+
+candidate_name: Gabi
+ui_language: pt-BR
+timezone: Europe/Amsterdam
+
+# Partner route: no visa sponsorship needed.
+visa_mode: no_sponsorship_needed
+work_authorised_from: null          # YYYY-MM-DD — fill in once the IND confirms
+
+languages:
+  pt: native
+  en: fluent
+  it: intermediate
+  nl: none
+
+# PROVISIONAL — cities she'd live in or commute to.
+cities:
+  - Amsterdam
+  - Amstelveen
+  - Haarlem
+  - Hoofddorp
+  - Utrecht
+  - Rotterdam
+  - The Hague
+  - Leiden
+  - Delft
+  - Eindhoven
+work_modes_ok: [onsite, hybrid, remote]
+remote_must_allow_nl: true
+
+# Seniority labels from the Judge that may enter the review deck.
+seniority_ok: [junior, mid]
+
+# PROVISIONAL — gross EUR per month; null = no floor.
+salary_floor_eur_month: null
+
+# Progress mechanics (ARCHITECTURE.md §6.4)
+weekly_target: 5          # applications per ISO week
+streak_min: 3             # applications that keep the sun streak alive
+cloudy_bank_max: 2        # banked cloudy weeks; one refills each new week
+
+# Salesforce Certified Platform Administrator: none | scheduled | passed
+salesforce_admin_cert: none
+salesforce_admin_cert_date: null

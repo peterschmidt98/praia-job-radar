@@ -1,0 +1,40 @@
+# LinkedIn searches for the Apify actor (ARCHITECTURE.md §8).
+# PROVISIONAL keywords — final terms wait for Gabi's sign-off on target roles.
+#
+# How to fill in each `url` (docs/SETUP.md step 7):
+#   1. Open https://www.linkedin.com/jobs/search in a PRIVATE window (logged out).
+#   2. Keywords: paste the `keywords` value below. Location: Netherlands.
+#   3. Filters: Date posted = Past week; Experience = Entry level, Associate, Mid-Senior;
+#      Job type = Full-time.
+#   4. Note the result count in `count_past_week`.
+#   5. Copy the URL from the address bar into `url`, then change f_TPR=r604800
+#      to f_TPR=r259200 (72 hours).
+#   6. max_results = about count_past_week / 2.3 × 1.5, rounded up.
+
+actor:
+  id: ""                       # chosen in SETUP step 7: must accept search URLs,
+                               # return full description + apply URL, pay-per-result
+  max_charge_usd_per_run: 0.30
+  backfill_max_charge_usd: 2.00
+
+searches:
+  - name: sales-revops
+    enabled: true
+    keywords: '("sales operations" OR "revenue operations" OR revops OR "commercial operations" OR "sales analyst") NOT (intern OR internship OR director OR "head of" OR VP)'
+    url: ""
+    count_past_week: null
+    max_results: 40
+
+  - name: crm-salesforce
+    enabled: true
+    keywords: '("salesforce administrator" OR "salesforce admin" OR "CRM analyst" OR "CRM specialist" OR "deal desk") NOT (intern OR internship OR director OR "head of")'
+    url: ""
+    count_past_week: null
+    max_results: 30
+
+  - name: business-pricing
+    enabled: false               # turn on if the first two leave gaps
+    keywords: '("business operations analyst" OR "pricing analyst" OR "GTM operations")'
+    url: ""
+    count_past_week: null
+    max_results: 20

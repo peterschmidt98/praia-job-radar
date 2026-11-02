@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Fila</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=Nunito+Sans:wght@400;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1F7A86}a:hover{color:#165C66}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: #FFF8F4; color: #3A2430; font-family: 'Nunito Sans', system-ui, sans-serif; display: flex; flex-direction: column;">
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 28px 22px 0; display: flex; flex-direction: column; gap: 14px;">
+    <header style="display: flex; flex-direction: column; gap: 6px;">
+      <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 40px; line-height: 1.05;">Fila</h1>
+      <p style="margin: 0; font-size: 15px; line-height: 1.4; color: #6B5560;">9 leads esperando. Sem pressa — depois de 14 dias, saem sozinhos.</p>
+    </header>
+
+    <a href="2-revisar.dc.html" style="display: flex; align-items: center; justify-content: center; gap: 8px; height: 52px; border-radius: 16px; background: {{accent}}; color: #FFFFFF; font-size: 15px; font-weight: 800; text-decoration: none;">Revisar um de cada vez<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 8px;" role="group" aria-label="Filtrar">
+      <button type="button" aria-pressed="true" style="min-height: 36px; padding: 0 12px; border-radius: 99px; border: 1px solid #3A2430; background: #3A2430; color: #FFFFFF; font-family: inherit; font-size: 13px; font-weight: 800; cursor: pointer;">Todos · 9</button>
+      <button type="button" aria-pressed="false" style="min-height: 36px; padding: 0 12px; border-radius: 99px; border: 1px solid #E2CEC6; background: #FFFFFF; color: #3A2430; font-family: inherit; font-size: 13px; font-weight: 800; cursor: pointer;">Peter indicou · 1</button>
+      <button type="button" aria-pressed="false" style="min-height: 36px; padding: 0 12px; border-radius: 99px; border: 1px solid #E2CEC6; background: #FFFFFF; color: #3A2430; font-family: inherit; font-size: 13px; font-weight: 800; cursor: pointer;">Precisa de holandês · 3</button>
+    </div>
+
+    <ul style="margin: 0; padding: 0; list-style: none; background: #FFFFFF; border: 1px solid #F1DFD8; border-radius: 16px; display: flex; flex-direction: column;">
+      <li style="border-bottom: 1px solid #F1DFD8;"><a href="#" style="display: flex; align-items: center; gap: 10px; min-height: 64px; padding: 8px 14px; color: #3A2430; text-decoration: none;"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; font-weight: 800;">Business Operations Analyst</span><span style="font-size: 13px; color: #6B5560;">Bynder · Amsterdam · há 3 dias</span></span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B5560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></a></li>
+      <li style="border-bottom: 1px solid #F1DFD8;"><a href="#" style="display: flex; align-items: center; gap: 10px; min-height: 64px; padding: 8px 14px; color: #3A2430; text-decoration: none;"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; font-weight: 800;">Commercial Analyst</span><span style="font-size: 13px; color: #6B5560;">Coolblue · Rotterdam · há 4 dias</span></span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B5560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></a></li>
+      <li style="border-bottom: 1px solid #F1DFD8;"><a href="#" style="display: flex; align-items: center; gap: 10px; min-height: 64px; padding: 8px 14px; color: #3A2430; text-decoration: none;"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; font-weight: 800;">Salesforce Administrator</span><span style="font-size: 13px; color: #6B5560;">Backbase · Amsterdam · há 5 dias</span></span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B5560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></a></li>
+      <li style="border-bottom: 1px solid #F1DFD8;"><a href="#" style="display: flex; align-items: center; gap: 10px; min-height: 64px; padding: 8px 14px; color: #3A2430; text-decoration: none;"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; font-weight: 800;">Pricing Analyst</span><span style="font-size: 13px; color: #6B5560;">Sendcloud · Eindhoven · há 6 dias</span></span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B5560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></a></li>
+      <li><a href="#" style="display: flex; align-items: center; gap: 10px; min-height: 64px; padding: 8px 14px; color: #3A2430; text-decoration: none;"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; font-weight: 800;">Deal Desk Analyst</span><span style="font-size: 13px; color: #6B5560;">Elastic · Amsterdam · há 9 dias</span></span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B5560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></a></li>
+    </ul>
+  </main>
+
+  <nav aria-label="Navegação" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #FFFFFF; border-top: 1px solid #F1DFD8; padding: 6px 8px 14px;">
+    <a href="1-inicio.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #6B5560; font-size: 12px; font-weight: 700;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15c3-3 6-3 9 0s6 3 9 0"></path><path d="M3 20c3-3 6-3 9 0s6 3 9 0"></path><circle cx="12" cy="7" r="3"></circle></svg>Início</a>
+    <a href="4-fila.dc.html" aria-current="page" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #1F7A86; font-size: 12px; font-weight: 800;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>Fila · 9</a>
+    <a href="5-candidaturas.dc.html" style="min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #6B5560; font-size: 12px; font-weight: 700;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>Candidaturas</a>
+  </nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#1F7A86","options":["#1F7A86","#C23E66","#3A2430"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#1F7A86' };
+  }
+}
+</script>
+</body>
+</html>

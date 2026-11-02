@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+web/.env
+web/.env.*
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+node_modules/
+web/dist/
+.DS_Store
+supabase/.temp/
+*.log

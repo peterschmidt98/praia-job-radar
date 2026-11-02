@@ -1,0 +1,40 @@
+# Watched companies with a public job board (ARCHITECTURE.md §4.1, §4.8).
+# Netherlands-relevant subset of the original 65-company list.
+#
+# ats/slug values come from Peter's first discover.py run (Oct 2026). Entries
+# that run flagged as likely slug collisions are set back to null.
+# If your local companies.yaml has newer verified values, those win: merge them in.
+#
+# ats: greenhouse | lever | ashby | smartrecruiters | recruitee | workable | personio | null
+# null = no public board found (often Workday or a custom site); the Company radar
+# may fill these later, and they're still found via LinkedIn/Indeed/Adzuna.
+# tier: A | B | C | auto (added by the Company radar)
+
+companies:
+  - {name: Adyen, city: Amsterdam, tier: A, ats: greenhouse, slug: adyen}
+  - {name: Mollie, city: Amsterdam, tier: A, ats: ashby, slug: mollie}
+  - {name: Miro, city: Amsterdam, tier: A, ats: ashby, slug: miro}
+  - {name: Mews, city: Amsterdam, tier: A, ats: null, slug: null}
+  - {name: Bynder, city: Amsterdam, tier: A, ats: ashby, slug: bynder}
+  - {name: Backbase, city: Amsterdam, tier: A, ats: null, slug: null}
+  - {name: Elastic, city: Amsterdam, tier: A, ats: greenhouse, slug: elastic}
+  - {name: Sendcloud, city: Eindhoven, tier: A, ats: null, slug: null}
+  - {name: Channable, city: Utrecht, tier: A, ats: recruitee, slug: channable}
+  - {name: Zivver, city: Amsterdam, tier: A, ats: null, slug: null}
+  - {name: Mambu, city: Amsterdam, tier: A, ats: null, slug: null}
+  - {name: Booking.com, city: Amsterdam, tier: B, ats: null, slug: null}
+  - {name: Uber, city: Amsterdam, tier: B, ats: null, slug: null}            # smartrecruiters/uber returned 1 job: collision
+  - {name: Just Eat Takeaway, city: Amsterdam, tier: B, ats: null, slug: null}
+  - {name: bunq, city: Amsterdam, tier: B, ats: null, slug: null}
+  - {name: TomTom, city: Amsterdam, tier: B, ats: null, slug: null}
+  - {name: Coolblue, city: Rotterdam, tier: B, ats: smartrecruiters, slug: coolblue}
+  - {name: Picnic, city: Amsterdam, tier: B, ats: null, slug: null}         # smartrecruiters/picnic returned 2 jobs: likely collision
+  - {name: Otrium, city: Amsterdam, tier: B, ats: null, slug: null}
+  - {name: Castor, city: Amsterdam, tier: B, ats: null, slug: null}
+  - {name: WeTransfer, city: Amsterdam, tier: B, ats: null, slug: null}
+  - {name: Databricks, city: Amsterdam, tier: C, ats: greenhouse, slug: databricks}
+  - {name: Datadog, city: Amsterdam, tier: C, ats: greenhouse, slug: datadog}
+  - {name: Stripe, city: Amsterdam, tier: C, ats: greenhouse, slug: stripe}
+  - {name: Salesforce, city: Amsterdam, tier: C, ats: null, slug: null}     # custom careers site
+  - {name: Exact, city: Delft, tier: C, ats: null, slug: null}
+  - {name: Visma, city: Amsterdam, tier: C, ats: null, slug: null}

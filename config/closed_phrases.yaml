@@ -1,0 +1,28 @@
+# A page containing any of these (case-insensitive) is treated as closed.
+# Add phrases when a "Link morto" report shows the checker missed one.
+
+en:
+  - no longer accepting applications
+  - this job is no longer available
+  - this job has expired
+  - job has expired
+  - this position has been filled
+  - this position is no longer available
+  - the position has been closed
+  - this vacancy has been closed
+  - this vacancy is closed
+  - applications are closed
+  - the job you are looking for is no longer available
+  - this posting has been removed
+  - job not found
+
+nl:
+  - vacature is gesloten
+  - deze vacature is gesloten
+  - deze vacature is niet meer beschikbaar
+  - deze vacature is vervuld
+  - deze vacature is verlopen
+  - niet langer beschikbaar
+  - de sollicitatietermijn is verlopen
+  - we nemen geen sollicitaties meer aan
+  - vacature niet gevonden

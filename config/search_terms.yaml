@@ -1,0 +1,107 @@
+# Gatekeeper title and location filters (ARCHITECTURE.md §4.3).
+# Matching is case-insensitive on WORD BOUNDARIES, not substrings:
+# "intern" must not match "International"; "crm" must not match "acrmx".
+# PROVISIONAL until Gabi signs off on target roles.
+
+# Keep a posting if its title contains ANY of these.
+include_titles:
+  # English
+  - sales ops
+  - sales operations
+  - revenue operations
+  - revops
+  - rev ops
+  - business operations
+  - commercial operations
+  - gtm operations
+  - go-to-market operations
+  - operations analyst
+  - crm
+  - salesforce
+  - hubspot
+  - sales analyst
+  - business analyst
+  - commercial analyst
+  - pricing analyst
+  - deal desk
+  - sales enablement
+  - sales systems
+  - sales strategy
+  # Dutch
+  - commercieel analist
+  - business analist
+  - crm beheerder
+  - crm-specialist
+  - salesforce beheerder
+  - prijsanalist
+
+# Then drop it if the title contains ANY of these.
+exclude_titles:
+  # above her level
+  - senior manager
+  - director
+  - head of
+  - vp
+  - vice president
+  - principal
+  - chief
+  - team lead
+  - teamleider
+  # below her level
+  - intern
+  - internship
+  - stage
+  - stagiair
+  - stagiaire
+  - afstudeerstage
+  - werkstudent
+  - working student
+  - student
+  - trainee
+  - bijbaan
+  # client-facing-first
+  - account executive
+  - account manager
+  - sales development representative
+  - business development representative
+  - sdr
+  - bdr
+  - customer success
+
+# Locations: keep if the location names an NL city, the Netherlands, or a
+# remote role that explicitly includes the Netherlands. The Judge confirms
+# ambiguous remote roles (e.g. "Remote — EMEA").
+locations:
+  country_markers: [netherlands, nederland, "the netherlands", nl]
+  cities:
+    - amsterdam
+    - amstelveen
+    - diemen
+    - haarlem
+    - hoofddorp
+    - schiphol
+    - zaandam
+    - almere
+    - utrecht
+    - amersfoort
+    - rotterdam
+    - the hague
+    - den haag
+    - "'s-gravenhage"
+    - leiden
+    - delft
+    - eindhoven
+    - breda
+    - tilburg
+    - "'s-hertogenbosch"
+    - den bosch
+    - arnhem
+    - nijmegen
+    - zwolle
+    - groningen
+    - maastricht
+    - enschede
+  remote_markers: [remote, hybrid, "work from home"]
+  remote_regions_ok: [netherlands, nederland, emea, europe, eu]
+
+max_age_days: 21
