@@ -1,6 +1,8 @@
 # Praia Job Radar — Architecture v3 (Netherlands only)
 
-Build spec for Claude Code. Reuses the existing scanner code in `legacy/` (ATS fetchers in `scan.py`, `discover.py`, `add_from_links.parse_url`).
+> **Reference only.** The build follows `replit.md`, which overrides this file wherever they differ (hosting, database, login, sources, scope). Use this file for the Judge schema (§4.5), ranking (§4.7) and LinkedIn cost rules (§8).
+
+Original build spec. Reuses the existing scanner code in `legacy/` (ATS fetchers in `scan.py`, `discover.py`, `add_from_links.parse_url`).
 
 **One sentence:** Monday, Wednesday and Friday a pipeline collects Dutch job postings from LinkedIn, Indeed NL, Adzuna and companies' own career boards, drops what doesn't fit, has Claude read the rest against her profile, confirms each posting is real and open, and publishes them to a small private web app where she reviews new leads one at a time, keeps a short list, logs every application, and sees her week's progress.
 
@@ -354,7 +356,7 @@ Guardrail: `budget_eur_per_month: 6`; warn at 80%, disable paid collectors at 10
 
 ## 10. Platform
 
-Claude Code + GitHub Actions + Supabase + Cloudflare Pages (decided in v2: ~€5 vs ~$75 for Replit Core over 3 months, no lock-in, existing Python code reused; identical experience for her).
+Replit (see `replit.md`). The original plan used GitHub Actions, Supabase and Cloudflare Pages; that was replaced to reduce setup.
 
 ---
 
@@ -439,7 +441,7 @@ Pause the GitHub Actions workflows; disable Apify (or delete the token); revoke 
 
 ## 16. Build sequence
 
-Follow `docs/PROMPTS.md` step by step (steps 0–8 for Phase 1, then Phase 2 and 3). Each step has a "Done when" check. Respect the invariants in §2. When a source behaves differently from the spec, report it instead of working around it silently.
+See `replit.md`.
 
 ---
 

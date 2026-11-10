@@ -1,7 +1,8 @@
 # LinkedIn searches for the Apify actor (ARCHITECTURE.md §8).
 # PROVISIONAL keywords — final terms wait for Gabi's sign-off on target roles.
 #
-# How to fill in each `url` (docs/SETUP.md step 7):
+# The Replit Agent builds the search URLs from `keywords` (see replit.md).
+# Manual alternative, if ever needed. How to fill in each `url`:
 #   1. Open https://www.linkedin.com/jobs/search in a PRIVATE window (logged out).
 #   2. Keywords: paste the `keywords` value below. Location: Netherlands.
 #   3. Filters: Date posted = Past week; Experience = Entry level, Associate, Mid-Senior;

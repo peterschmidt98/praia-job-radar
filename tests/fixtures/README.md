@@ -2,7 +2,7 @@
 
 One saved raw response per source, captured once from a real call and committed, so tests and `run.py --fixtures` never touch the network.
 
-Expected files (Claude Code creates them while building each collector):
+Expected files (the Replit Agent creates them while building each collector):
 
 | File | Source |
 |---|---|

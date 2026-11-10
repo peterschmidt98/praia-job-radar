@@ -1,13 +1,10 @@
 # Praia Job Radar
 
-Private job-lead app ("Maré") for Gabi's job search in the Netherlands.
+Private job-lead app ("Maré") for Gabi's job search in the Netherlands, built on Replit.
 
-**Start here, in this order:**
-
-**Building on Replit?** Read `docs/REPLIT_MANUAL.md` and `replit.md` instead of the steps below.
-
-1. `docs/SETUP.md` — accounts, keys and the one-off tasks only you can do (~2–3 hours spread over a few days).
-2. Open this folder in Claude Code. It reads `CLAUDE.md` automatically.
-3. `docs/PROMPTS.md` — paste the prompts one step at a time. Each step ends with a "Done when" check.
-
-The full spec is `ARCHITECTURE.md`. The approved screens are in `design/screens/`.
+- `replit.md`: the build brief and the prompt for the Replit Agent.
+- `docs/REPLIT_MANUAL.md`: the 30-minute setup steps.
+- `config/`: profile, Judge prompt, search terms, scoring, sources, companies.
+- `docs/DESIGN.md` and `design/screens/`: look and Portuguese UI copy.
+- `ARCHITECTURE.md`: original design, for reference (Judge schema, ranking, LinkedIn cost rules).
+- `legacy/`: the earlier scanner, ported by the Agent.

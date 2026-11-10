@@ -1,6 +1,6 @@
 # Maré — job radar for Gabi (Replit build, v2 "lean")
 
-Replit Agent: read this file first. It is the build brief and **overrides `ARCHITECTURE.md`, `CLAUDE.md` and `docs/PROMPTS.md` wherever they differ**. Use `ARCHITECTURE.md` only for detail (Judge schema §4.5, ranking §4.7, LinkedIn cost rules §8), `docs/DESIGN.md` for the look and Portuguese UI copy, and `config/*.yaml` for terms, weights and lists.
+Replit Agent: read this file first. It is the build brief and **overrides `ARCHITECTURE.md` wherever they differ**. Use `ARCHITECTURE.md` only for detail (Judge schema §4.5, ranking §4.7, LinkedIn cost rules §8), `docs/DESIGN.md` for the look and Portuguese UI copy, and `config/*.yaml` for terms, weights and lists.
 
 **Goal:** a working system with very little setup from Peter. Everything that can be automated or decided by the Agent is.
 

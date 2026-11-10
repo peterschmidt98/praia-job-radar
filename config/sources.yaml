@@ -35,7 +35,7 @@ adzuna:
     - pricing analyst
 
 linkedin:
-  enabled: false            # switch on only after calibration (docs/SETUP.md step 7)
+  enabled: true             # the Agent builds the search URLs (replit.md)
   provider: apify
   searches_file: config/linkedin_searches.yaml
 
