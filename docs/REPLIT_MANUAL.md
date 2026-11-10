@@ -1,42 +1,18 @@
-# Building Maré on Replit — one-page manual
+# Maré on Replit — 30-minute manual
 
-The Replit Agent does the coding. You prepare keys, paste five prompts, and check each result. The brief it follows is `replit.md` in the repo root.
+You do four short things. The Replit Agent builds the rest from `replit.md`.
 
-## Before you start (about 1.5 hours, do once)
-
-| What | Where | Result |
+| # | You | Time |
 |---|---|---|
-| Spending cap | Replit → account → Usage/Billing: set a monthly budget limit | no surprise overage |
-| Anthropic key | console.anthropic.com → Billing: add $5 → API keys | `ANTHROPIC_API_KEY` |
-| Adzuna key | developer.adzuna.com → create app (free) | `ADZUNA_APP_ID`, `ADZUNA_APP_KEY` |
-| Apify | apify.com → Free plan (no card) → Settings → API & Integrations; pick a LinkedIn jobs actor that takes search URLs and charges per result | `APIFY_TOKEN`, actor ID |
-| LinkedIn searches | Private browser window, logged out → linkedin.com/jobs. Build each search in `config/linkedin_searches.yaml` (instructions at the top of that file), paste the URLs and counts | calibrated searches |
-| Gold set | Find 30 real Dutch postings: ~15 she should see, ~15 she shouldn't. You can paste them into the Agent chat; it writes `tests/gold_set.csv` | accuracy test data |
-| PINs | Pick a 6-digit PIN for Gabi and one for you; make up a long random `SESSION_SECRET` | login |
+| 1 | **Apify:** apify.com → sign up (Free plan, no card) → Settings → API & Integrations → copy the token. | 5 min |
+| 2 | **Claude access:** only if the Agent says Replit has no built-in Claude access: console.anthropic.com → add $5 → create an API key. | 0–5 min |
+| 3 | **Replit:** set a monthly spending cap. Create → Import from GitHub → `peterschmidt98/praia-job-radar`. In Secrets add `APIFY_TOKEN`, `PIN_GABI`, `PIN_PETER` (two 6-digit PINs you choose). Open the Agent and paste the prompt at the end of `replit.md`. | 10 min |
+| 4 | **Check the result:** open the app URL on your phone, log in, look at the first run's numbers. Every "Ver vaga" you try should open a real, open posting. | 10 min |
 
-## Build (the Agent works; you review)
+Then Gabi spends **10 minutes in Calibrar**, rating 20 real postings. If the system agrees with her on at least 16, it's live. If not, the Agent proposes changes to her profile and you approve them.
 
-1. **Import:** Replit → Create → Import from GitHub → `peterschmidt98/praia-job-radar`.
-2. **Secrets:** in the Repl, open the Secrets tool and add `ANTHROPIC_API_KEY`, `APIFY_TOKEN`, `ADZUNA_APP_ID`, `ADZUNA_APP_KEY`, `PIN_GABI`, `PIN_PETER`, `SESSION_SECRET`. Never paste keys into the chat.
-3. **Prompts:** open the Agent and paste Prompts 1–5 from the end of `replit.md`, one at a time. After each one, check:
-   - **1 Plan:** it read the files and asks sensible questions. Answer them.
-   - **2 Pipeline:** the eval shows **25/30 or better**. If not, ask it to propose changes to `config/profile_brief.md` or `config/judge_prompt.md` from the disagreements, approve, re-run.
-   - **3 LinkedIn:** cost per run under $0.30, and a reasonable share of results scoring 6+.
-   - **4 App:** on your phone, log in with your PIN, review a few leads, mark one "Candidatei", register one application from outside.
-   - **5 Go live:** a scheduled deployment exists and the app has a public URL.
+**While it's being built,** Gabi turns on LinkedIn job alerts for "Sales Operations" and "Revenue Operations" in the Netherlands, so she keeps applying in the meantime.
 
-## Test week (just you)
+**Costs:** your Replit subscription, LinkedIn within Apify's free $5/month (it pauses until next month if used up), and Claude either through Replit or about €0.50 of a $5 Anthropic top-up.
 
-Use the app for three runs (Mon, Wed, Fri). Every "Ver vaga" must open a real, open posting; at most 8 relevant leads per run. Mark leads the way Gabi would. Then ask the Agent: *"Review the last three runs and propose config changes. Don't apply them."* Before inviting her, ask it to delete your test applications and reviews.
-
-## Hand it to Gabi
-
-Send her the app URL and her PIN. She opens it in **Safari** (not inside WhatsApp), logs in, then taps Compartilhar → **Adicionar à Tela de Início**. The praia stays her own separate thing.
-
-## Running it
-
-- **Tune the search:** edit the files in `config/` (roles, cities, terms, weights). The next run uses them.
-- **Add a job you found:** "Add link" in the app.
-- **Costs:** your Replit subscription, about €0.50 of the $5 Anthropic credit, LinkedIn within Apify's free $5/month (it pauses until next month if used up), the rest free. Check Replit usage weekly.
-- **Something broke:** tell the Agent what you saw and paste the deployment log; ask it to diagnose before changing anything.
-- **When she's hired:** stop the scheduled deployment, export her applications, revoke the keys.
+**Tuning later:** say it in plain words to the Agent ("more pricing roles", "fewer Utrecht jobs", "too many senior roles"). It edits `config/`.
