@@ -1,40 +1,138 @@
-# Watched companies with a public job board (ARCHITECTURE.md §4.1, §4.8).
-# Netherlands-relevant subset of the original 65-company list.
+# Watched companies with a job board the scanner reads directly (replit.md, step 1).
 #
-# ats/slug values come from Peter's first discover.py run (Oct 2026). Entries
-# that run flagged as likely slug collisions are set back to null.
-# If your local companies.yaml has newer verified values, those win: merge them in.
+# Updated 19 Nov 2026: 27 original entries re-checked, plus 80 Dutch scale-ups found by a research agent
+# and independently re-checked by a second agent (company status, NL office, job board, posting language).
 #
-# ats: greenhouse | lever | ashby | smartrecruiters | recruitee | workable | personio | null
-# null = no public board found (often Workday or a custom site); the Company radar
-# may fill these later, and they're still found via LinkedIn/Indeed/Adzuna.
-# tier: A | B | C | auto (added by the Company radar)
+# Fields
+#   ats:      greenhouse | lever | ashby | smartrecruiters | recruitee | workable | personio | null
+#             null = no readable board (Workday, Teamtailor, HiBob, custom site...). The company is still
+#             found via LinkedIn/Indeed; keep it here so it counts as a watched company.
+#   slug:     board name for that ATS.
+#   host:     eu  -> use the EU API host first (boards-api.eu.greenhouse.io / api.eu.lever.co),
+#             then fall back to the global host.
+#   base_url: Recruitee on the company's own domain -> fetch {base_url}/api/offers/ instead of
+#             https://{slug}.recruitee.com/api/offers/. Unverified: if it returns no JSON, mark the board dead.
+#   posts_in: en | nl | mixed | unknown  (language of their job postings; she has no Dutch)
+#   careers:  human careers page, for reference.
+#   tier:     A = very likely to hire Sales Ops / RevOps / CRM roles in English in NL
+#             B = plausible, C = long shot or unverified.
+#
+# Before trusting a slug, run discover.py over this file: it must return jobs for that company.
+# A Recruitee slug that 302-redirects to https://recruitee.com/ is dead (board removed).
+# A redirect to another *.recruitee.com subdomain is a rename: follow it and update the slug.
 
 companies:
-  - {name: Adyen, city: Amsterdam, tier: A, ats: greenhouse, slug: adyen}
-  - {name: Mollie, city: Amsterdam, tier: A, ats: ashby, slug: mollie}
-  - {name: Miro, city: Amsterdam, tier: A, ats: ashby, slug: miro}
-  - {name: Mews, city: Amsterdam, tier: A, ats: null, slug: null}
-  - {name: Bynder, city: Amsterdam, tier: A, ats: ashby, slug: bynder}
-  - {name: Backbase, city: Amsterdam, tier: A, ats: null, slug: null}
-  - {name: Elastic, city: Amsterdam, tier: A, ats: greenhouse, slug: elastic}
-  - {name: Sendcloud, city: Eindhoven, tier: A, ats: null, slug: null}
-  - {name: Channable, city: Utrecht, tier: A, ats: recruitee, slug: channable}
-  - {name: Zivver, city: Amsterdam, tier: A, ats: null, slug: null}
-  - {name: Mambu, city: Amsterdam, tier: A, ats: null, slug: null}
-  - {name: Booking.com, city: Amsterdam, tier: B, ats: null, slug: null}
-  - {name: Uber, city: Amsterdam, tier: B, ats: null, slug: null}            # smartrecruiters/uber returned 1 job: collision
-  - {name: Just Eat Takeaway, city: Amsterdam, tier: B, ats: null, slug: null}
-  - {name: bunq, city: Amsterdam, tier: B, ats: null, slug: null}
-  - {name: TomTom, city: Amsterdam, tier: B, ats: null, slug: null}
-  - {name: Coolblue, city: Rotterdam, tier: B, ats: smartrecruiters, slug: coolblue}
-  - {name: Picnic, city: Amsterdam, tier: B, ats: null, slug: null}         # smartrecruiters/picnic returned 2 jobs: likely collision
-  - {name: Otrium, city: Amsterdam, tier: B, ats: null, slug: null}
-  - {name: Castor, city: Amsterdam, tier: B, ats: null, slug: null}
-  - {name: WeTransfer, city: Amsterdam, tier: B, ats: null, slug: null}
-  - {name: Databricks, city: Amsterdam, tier: C, ats: greenhouse, slug: databricks}
-  - {name: Datadog, city: Amsterdam, tier: C, ats: greenhouse, slug: datadog}
-  - {name: Stripe, city: Amsterdam, tier: C, ats: greenhouse, slug: stripe}
-  - {name: Salesforce, city: Amsterdam, tier: C, ats: null, slug: null}     # custom careers site
-  - {name: Exact, city: Delft, tier: C, ats: null, slug: null}
-  - {name: Visma, city: Amsterdam, tier: C, ats: null, slug: null}
+  # ---- Original list (re-checked Nov 2026; WeTransfer dropped) ----
+  - {name: Adyen, city: Amsterdam, tier: A, ats: greenhouse, slug: adyen, posts_in: unknown}
+  - {name: Mollie, city: Amsterdam, tier: A, ats: ashby, slug: mollie, posts_in: unknown}
+  - {name: Miro, city: Amsterdam, tier: A, ats: ashby, slug: miro, posts_in: unknown}
+  - {name: Mews, city: Amsterdam, tier: A, ats: greenhouse, slug: mewssystemshub, host: eu, posts_in: unknown, careers: "https://www.mews.com/en/careers"}   # unverified: board showed 1 job; let discover.py confirm. Mews cut ~15% of staff Jul 2026
+  - {name: Bynder, city: Amsterdam, tier: A, ats: ashby, slug: bynder, posts_in: unknown}
+  - {name: Backbase, city: Amsterdam, tier: A, ats: greenhouse, slug: workatbackbase, posts_in: unknown, careers: "https://job-boards.greenhouse.io/workatbackbase"}
+  - {name: Elastic, city: Amsterdam, tier: A, ats: greenhouse, slug: elastic, posts_in: unknown}
+  - {name: Sendcloud, city: Eindhoven, tier: A, ats: greenhouse, slug: sendcloud, posts_in: unknown, careers: "https://jobs.sendcloud.com"}   # slug 'sendcloud' has the live jobs ('sendcloudnew' lists 1)
+  - {name: Channable, city: Utrecht, tier: A, ats: recruitee, slug: channable, posts_in: unknown}
+  - {name: Zivver, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: unknown, careers: "https://zivver.recruitee.com"}   # acquired by Kiteworks (2025); jobs on HiBob (unsupported)
+  - {name: Mambu, city: Amsterdam, tier: A, ats: null, slug: null, posts_in: unknown, careers: "https://careers-mambu.icims.com"}   # iCIMS (unsupported)
+  - {name: Booking.com, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: unknown, careers: "https://jobs.booking.com"}
+  - {name: Uber, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: unknown, careers: "https://www.uber.com/careers/list/"}   # smartrecruiters/uber is a collision; keep null
+  - {name: Just Eat Takeaway, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: unknown, careers: "https://careers.justeattakeaway.com/global/en/netherlands-home"}   # owned by Prosus since 2025
+  - {name: bunq, city: Amsterdam, tier: B, ats: recruitee, slug: bunq, posts_in: unknown, careers: "https://www.bunq.com/careers"}   # careers.bunq.com is the same Recruitee board
+  - {name: TomTom, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: unknown, careers: "https://www.tomtom.com/careers/"}   # ~200 job cuts announced Oct 2026
+  - {name: Coolblue, city: Rotterdam, tier: B, ats: smartrecruiters, slug: coolblue, posts_in: unknown}
+  - {name: Picnic, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: unknown, careers: "https://jobs.picnic.app"}   # smartrecruiters/picnic is a collision; keep null
+  - {name: Otrium, city: Amsterdam, tier: B, ats: greenhouse, slug: otrium, posts_in: unknown, careers: "https://jobs.otrium.com"}
+  - {name: Castor, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: unknown, careers: "https://castoredc.com/careers/"}   # BambooHR (unsupported)
+  - {name: Databricks, city: Amsterdam, tier: C, ats: greenhouse, slug: databricks, posts_in: unknown}
+  - {name: Datadog, city: Amsterdam, tier: C, ats: greenhouse, slug: datadog, posts_in: unknown}
+  - {name: Stripe, city: Amsterdam, tier: C, ats: greenhouse, slug: stripe, posts_in: unknown}
+  - {name: Salesforce, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: unknown, careers: "https://careers.salesforce.com"}
+  - {name: Exact, city: Delft, tier: C, ats: null, slug: null, posts_in: unknown, careers: "https://www.exact.com/careers/vacancies"}
+  - {name: Visma, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: unknown, careers: "https://vismasoftwareinternationalas.teamtailor.com"}   # Teamtailor, one board per Visma company (unsupported)
+
+  # ---- New scale-ups, Tier A: strongest fits (13) ----
+  - {name: ABAX, city: Diemen, tier: A, ats: null, slug: null, posts_in: en, careers: "https://careers.abax.com"}
+  - {name: AIHR, city: Rotterdam, tier: A, ats: recruitee, slug: aihr, posts_in: en, careers: "https://aihr.recruitee.com"}
+  - {name: Catawiki, city: Amsterdam, tier: A, ats: null, slug: null, posts_in: en, careers: "https://catawiki.careers/vacancies"}
+  - {name: DataSnipper, city: Amsterdam, tier: A, ats: null, slug: null, posts_in: en, careers: "https://careers.datasnipper.com/job-listing"}
+  - {name: Gain.pro, city: Amsterdam, tier: A, ats: recruitee, slug: gainpro, posts_in: en, careers: "https://gainpro.recruitee.com"}
+  - {name: Hadrian, city: Amsterdam, tier: A, ats: null, slug: null, posts_in: en, careers: "https://careers.hadrian.io"}
+  - {name: Lepaya, city: Amsterdam, tier: A, ats: personio, slug: lepaya, posts_in: en, careers: "https://lepaya.jobs.personio.de"}
+  - {name: Nebius, city: Amsterdam, tier: A, ats: greenhouse, slug: nebius, host: eu, posts_in: en, careers: "https://job-boards.greenhouse.io/nebius"}
+  - {name: OpenUp, city: Amsterdam, tier: A, ats: greenhouse, slug: openup, host: eu, posts_in: mixed, careers: "https://job-boards.eu.greenhouse.io/openup"}
+  - {name: Qogita, city: Amsterdam, tier: A, ats: null, slug: null, posts_in: en, careers: "https://jobs.accel.com/companies/qogita"}
+  - {name: Vandebron, city: Amsterdam, tier: A, ats: recruitee, slug: null, base_url: "https://werkenbij.vandebron.nl", posts_in: mixed, careers: "https://werkenbij.vandebron.nl"}   # custom-domain Recruitee, unverified API; not independent: Owned by Essent
+  - {name: Virtuagym, city: Amsterdam, tier: A, ats: recruitee, slug: null, base_url: "https://jobs.virtuagym.com", posts_in: en, careers: "https://jobs.virtuagym.com"}   # custom-domain Recruitee, unverified API
+  - {name: Workwize, city: Amsterdam, tier: A, ats: greenhouse, slug: workwize, host: eu, posts_in: en, careers: "https://job-boards.eu.greenhouse.io/workwize"}
+
+  # ---- New scale-ups, Tier B: plausible (30) ----
+  - {name: Axelera AI, city: Eindhoven, tier: B, ats: ashby, slug: axelera, posts_in: en, careers: "https://jobs.ashbyhq.com/axelera"}
+  - {name: Bitvavo, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: en, careers: "https://jobs.bitvavo.com"}
+  - {name: ChannelEngine, city: Leiden, tier: B, ats: recruitee, slug: null, base_url: "https://jobs.channelengine.com", posts_in: en, careers: "https://jobs.channelengine.com"}   # custom-domain Recruitee, unverified API
+  - {name: DeepL, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: en, careers: "https://jobs.deepl.com"}
+  - {name: Dott, city: Amsterdam, tier: B, ats: greenhouse, slug: ridedott, posts_in: en, careers: "https://job-boards.greenhouse.io/ridedott"}
+  - {name: Effectory, city: Amsterdam, tier: B, ats: recruitee, slug: null, base_url: "https://jobs.effectory.com", posts_in: en, careers: "https://jobs.effectory.com"}   # added by checker; custom-domain Recruitee, unverified API
+  - {name: Fairphone, city: Amsterdam, tier: B, ats: personio, slug: fairphone, posts_in: en, careers: "https://fairphone.jobs.personio.com"}
+  - {name: Fastned, city: Amsterdam, tier: B, ats: recruitee, slug: fastned, posts_in: mixed, careers: "https://fastned.recruitee.com"}
+  - {name: Finom, city: Amsterdam, tier: B, ats: lever, slug: pnlfin, host: eu, posts_in: en, careers: "https://jobs.eu.lever.co/pnlfin"}
+  - {name: Foleon, city: Amsterdam, tier: B, ats: recruitee, slug: foleon, posts_in: en, careers: "https://foleon.recruitee.com"}
+  - {name: GoodHabitz, city: Eindhoven, tier: B, ats: workable, slug: goodhabitz, posts_in: mixed, careers: "https://apply.workable.com/goodhabitz/"}   # often asks for Dutch
+  - {name: Last Mile Solutions, city: Rotterdam, tier: B, ats: null, slug: null, posts_in: en, careers: "https://careers.lastmilesolutions.com"}   # added by checker; Teamtailor (unsupported)
+  - {name: Leadinfo, city: Rotterdam, tier: B, ats: null, slug: null, posts_in: en, careers: "https://jobs.leadinfo.com"}   # added by checker; Teamtailor (unsupported); not independent
+  - {name: LOGEX, city: Amsterdam, tier: B, ats: recruitee, slug: logex, posts_in: en, careers: "https://logex.recruitee.com"}   # not independent: Thoma Bravo portfolio
+  - {name: Lucid Software, city: Amsterdam, tier: B, ats: greenhouse, slug: lucidsoftware, posts_in: en, careers: "https://job-boards.greenhouse.io/lucidsoftware"}
+  - {name: myTomorrows, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: en, careers: "https://mytomorrows.recruitee.com"}   # Recruitee board dead; reportedly Ashby, try slug 'mytomorrows'
+  - {name: Road, city: Amsterdam, tier: B, ats: recruitee, slug: null, base_url: "https://careers.road.io", posts_in: en, careers: "https://careers.road.io"}   # custom-domain Recruitee, unverified API
+  - {name: Sensorfact, city: Utrecht, tier: B, ats: personio, slug: sensorfact, posts_in: mixed, careers: "https://sensorfact.jobs.personio.de"}   # not independent: Acquired by ABB; often asks for Dutch
+  - {name: Silverflow, city: Amsterdam, tier: B, ats: personio, slug: silverflow, posts_in: en, careers: "https://silverflow.jobs.personio.com"}
+  - {name: Source.ag, city: Amsterdam, tier: B, ats: recruitee, slug: null, base_url: "https://careers.source.ag", posts_in: en, careers: "https://careers.source.ag"}   # custom-domain Recruitee, unverified API
+  - {name: Storio Group, city: Amsterdam, tier: B, ats: lever, slug: storiogroup, posts_in: en, careers: "https://jobs.lever.co/storiogroup"}
+  - {name: Storyteq, city: Amsterdam, tier: B, ats: workable, slug: storyteq, posts_in: en, careers: "https://apply.workable.com/storyteq/"}   # not independent: Part of Inspired Thinking Group
+  - {name: Studytube, city: Amsterdam, tier: B, ats: recruitee, slug: null, base_url: "https://jobs.studytube.nl", posts_in: en, careers: "https://jobs.studytube.nl"}   # added by checker; custom-domain Recruitee, unverified API
+  - {name: Swapfiets, city: Amsterdam, tier: B, ats: recruitee, slug: null, base_url: "https://jobs.swapfiets.com", posts_in: mixed, careers: "https://jobs.swapfiets.com"}   # custom-domain Recruitee, unverified API; not independent: Majority-owned by Pon
+  - {name: Tebi, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: mixed, careers: "https://www.indexventures.com/startup-jobs/tebi/"}   # often asks for Dutch
+  - {name: Tellent, city: Amsterdam, tier: B, ats: recruitee, slug: ourjobs, posts_in: en, careers: "https://careers.tellent.com"}   # often asks for Dutch
+  - {name: TestGorilla, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: en, careers: "https://testgorilla-1680540968.teamtailor.com"}   # added by checker; Teamtailor (unsupported)
+  - {name: TicketSwap, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: mixed, careers: "https://magnet.me/en/company/ticketswap/opportunities"}
+  - {name: Tiqets, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: en, careers: "https://www.welcometothejungle.com/en/companies/tiqets/jobs"}
+  - {name: Wonderful, city: Amsterdam, tier: B, ats: null, slug: null, posts_in: en, careers: "https://www.wonderful.ai"}
+
+  # ---- New scale-ups, Tier C: long shots / unverified (37) ----
+  - {name: Airwallex, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: en, careers: "https://careers.airwallex.com"}   # unverified: little evidence of NL hiring
+  - {name: Bridgefund, city: Amsterdam, tier: C, ats: recruitee, slug: bridgefund, posts_in: nl, careers: "https://bridgefund.nl/werken-bij/"}   # often asks for Dutch
+  - {name: Crisp, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: nl, careers: "https://www.youngcapital.nl/werken-bij/crisp-vacatures"}   # often asks for Dutch
+  - {name: Dexter Energy, city: Amsterdam, tier: C, ats: recruitee, slug: dexterenergyservices, posts_in: en, careers: "https://dexterenergyservices.recruitee.com"}   # unverified: board slug not confirmed
+  - {name: EclecticIQ, city: Amsterdam, tier: C, ats: recruitee, slug: null, base_url: "https://jobs.eclecticiq.com", posts_in: en, careers: "https://jobs.eclecticiq.com"}   # custom-domain Recruitee, unverified API; unverified: Recruitee slug dead, custom domain unconfirmed
+  - {name: Eye Security, city: The Hague, tier: C, ats: null, slug: null, posts_in: mixed, careers: "https://eye.security/careers/"}   # often asks for Dutch
+  - {name: Fourthline, city: Amsterdam, tier: C, ats: greenhouse, slug: fourthline, host: eu, posts_in: en, careers: "https://job-boards.eu.greenhouse.io/fourthline"}
+  - {name: Framer, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: en, careers: "https://www.framer.com/careers/"}
+  - {name: GRESB, city: Amsterdam, tier: C, ats: workable, slug: gresb, posts_in: en, careers: "https://apply.workable.com/gresb/"}
+  - {name: Helloprint, city: Rotterdam, tier: C, ats: recruitee, slug: helloprint, posts_in: en, careers: "https://helloprint.recruitee.com"}
+  - {name: HousingAnywhere, city: Rotterdam, tier: C, ats: greenhouse, slug: housinganywhere, posts_in: en, careers: "https://job-boards.greenhouse.io/housinganywhere"}
+  - {name: Insify, city: Amsterdam, tier: C, ats: greenhouse, slug: insify, host: eu, posts_in: en, careers: "https://job-boards.eu.greenhouse.io/insify"}
+  - {name: Lumicks, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: en, careers: "https://lumicks.com/careers"}
+  - {name: Luscii, city: Amsterdam, tier: C, ats: recruitee, slug: luscii, posts_in: mixed, careers: "https://jobs.luscii.com"}   # often asks for Dutch
+  - {name: Mapiq, city: Delft, tier: C, ats: null, slug: null, posts_in: en, careers: "https://jobs.mapiq.net"}   # added by checker
+  - {name: Ohpen, city: Amsterdam, tier: C, ats: personio, slug: ohpen, posts_in: mixed, careers: "https://ohpen.jobs.personio.com"}   # often asks for Dutch
+  - {name: Oneleet, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: en, careers: "https://jobs.dawncapital.com/companies/oneleet-2"}
+  - {name: Overstory, city: Amsterdam, tier: C, ats: greenhouse, slug: overstory, host: eu, posts_in: en, careers: "https://job-boards.eu.greenhouse.io/overstory"}
+  - {name: Personio, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: mixed, careers: "https://www.personio.com/about-personio/careers/locations/amsterdam/"}   # often asks for Dutch
+  - {name: Piano, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: en, careers: "https://jobs.updata.com/companies/piano-software"}   # unverified: no current NL roles, board unknown
+  - {name: Recharge.com, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: en}   # added by checker; Recruitee board dead
+  - {name: Rentman, city: Utrecht, tier: C, ats: recruitee, slug: null, base_url: "https://careers.rentman.io", posts_in: mixed, careers: "https://careers.rentman.io"}   # added by checker; custom-domain Recruitee, unverified API
+  - {name: Shypple, city: Rotterdam, tier: C, ats: recruitee, slug: null, base_url: "https://careers.shypple.com", posts_in: mixed, careers: "https://careers.shypple.com"}   # custom-domain Recruitee, unverified API; often asks for Dutch
+  - {name: Simvia, city: Amsterdam, tier: C, ats: recruitee, slug: simvia, posts_in: en, careers: "https://simvia.recruitee.com"}   # formerly Agriplace; often asks for Dutch
+  - {name: Speakap, city: Amsterdam, tier: C, ats: recruitee, slug: null, base_url: "https://jobs.speakap.com", posts_in: en, careers: "https://jobs.speakap.com"}   # added by checker; custom-domain Recruitee, unverified API
+  - {name: Studocu, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: en, careers: "https://jobs.peak.capital/companies/studocu-2"}
+  - {name: Studyportals, city: Eindhoven, tier: C, ats: workable, slug: studyportals, posts_in: en, careers: "https://apply.workable.com/studyportals/"}
+  - {name: Sympower, city: Amsterdam, tier: C, ats: recruitee, slug: null, base_url: "https://careers.sympower.net", posts_in: en, careers: "https://careers.sympower.net"}   # custom-domain Recruitee, unverified API
+  - {name: Temper, city: Amsterdam, tier: C, ats: recruitee, slug: temper2, posts_in: mixed, careers: "https://go.temper.works/en-nl/careers"}   # unverified: board slug not confirmed; often asks for Dutch; court ruled it a temp agency (Jun 2026), appeal pending
+  - {name: Toloka, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: en, careers: "https://builtin.com/company/toloka/jobs"}   # unverified: no NL roles or board found
+  - {name: Transferz, city: Amsterdam, tier: C, ats: recruitee, slug: transferz, posts_in: en, careers: "https://transferz.recruitee.com"}
+  - {name: Trengo, city: Utrecht, tier: C, ats: null, slug: null, posts_in: en, careers: "https://trengo.com/careers"}
+  - {name: UltiMaker, city: Utrecht, tier: C, ats: greenhouse, slug: ultimaker, posts_in: en, careers: "https://job-boards.greenhouse.io/ultimaker"}
+  - {name: Vio.com, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: en, careers: "https://wellfound.com/company/viodotcom"}
+  - {name: Weaviate, city: Amsterdam, tier: C, ats: ashby, slug: weaviate, posts_in: en, careers: "https://weaviate.io/company/careers"}
+  - {name: Weeztix, city: Amsterdam, tier: C, ats: recruitee, slug: weeztix, posts_in: mixed, careers: "https://weeztix.recruitee.com"}   # added by checker; not independent
+  - {name: WeTravel, city: Amsterdam, tier: C, ats: null, slug: null, posts_in: en, careers: "https://jobs.wetravel.com"}
+
